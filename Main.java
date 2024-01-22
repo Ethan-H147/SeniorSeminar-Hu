@@ -44,10 +44,11 @@ public class Main {
           name = myArray[1];
           for(int i=0;i<5;i++){
             int temp = Integer.parseInt(myArray[2+i])-1;
-            if(temp==0){
+            if(temp==-1){
               continue;
             }
             choice[i]=sList.get(temp);
+            sList.get(temp).pick();
           }
           Student a = new Student(name, choice);
           grade.add(a);
@@ -58,6 +59,7 @@ public class Main {
         System.out.println("An error occurred.");
         e.printStackTrace();
       }
+      System.out.print(sList);
     }
     
 }

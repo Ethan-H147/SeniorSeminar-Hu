@@ -1,6 +1,7 @@
 public class Seminar {
     String sName;
     int sNum;
+    int picked;
     boolean popularity;
 
     public Seminar(String name, int num){
@@ -12,7 +13,11 @@ public class Seminar {
         return sNum;
     }
 
+    public void pick(){
+        picked++;
+    }
+
     public String toString() {
-        return sName;
+        return sName+" "+picked;
     }
 }

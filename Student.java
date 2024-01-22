@@ -6,9 +6,8 @@ public class Student {
         nameString = name;
         choices = choice;
     }
-
     
     public String toString() {
-        return nameString+choices[1].getNum();
+        return nameString+" "+choices[1].getNum();
     }
 }
