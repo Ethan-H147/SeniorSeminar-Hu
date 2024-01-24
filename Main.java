@@ -9,7 +9,7 @@ public class Main {
     ArrayList<Seminar> sList = new ArrayList<Seminar>();
     String name;
     Seminar[] choice=new Seminar[5];
-    int totalSeminar=18;
+    int totalSeminar=19;
       
       try {
         File myObj = new File("SrSeminar_RawData.csv");
@@ -45,7 +45,7 @@ public class Main {
           for(int i=0;i<5;i++){
             int temp = Integer.parseInt(myArray[2+i])-1;
             if(temp==-1){
-              continue;
+              temp=18;
             }
             choice[i]=sList.get(temp);
             sList.get(temp).pick();
@@ -59,7 +59,19 @@ public class Main {
         System.out.println("An error occurred.");
         e.printStackTrace();
       }
-      System.out.print(sList);
+      //System.out.print(sList);
+      Scanner scan = new Scanner(System.in);
+      String funct;
+      do{
+      funct= scan.nextLine();
+    System.out.println("Function");
+    if(funct.equalsIgnoreCase("students")) {
+      for(Student a:grade){
+        System.out.println(a);
+      }
     }
-    
+      }
+      while(!funct.equalsIgnoreCase("skip"));
+    }
+  
 }
