@@ -8,7 +8,6 @@ public class Main {
     ArrayList<Student> grade = new ArrayList<Student>();
     ArrayList<Seminar> sList = new ArrayList<Seminar>();
     String name;
-    Seminar[] choice=new Seminar[5];
     int totalSeminar=19;
       
       try {
@@ -42,6 +41,7 @@ public class Main {
           //System.out.println(data);
           myArray = data.split(",");
           name = myArray[1];
+          Seminar[] choice=new Seminar[5];
           for(int i=0;i<5;i++){
             int temp = Integer.parseInt(myArray[2+i])-1;
             if(temp==-1){
@@ -59,15 +59,24 @@ public class Main {
         System.out.println("An error occurred.");
         e.printStackTrace();
       }
-      //System.out.print(sList);
+
+      //System.out.print(grade);
       Scanner scan = new Scanner(System.in);
       String funct;
       do{
       funct= scan.nextLine();
     System.out.println("Function");
     if(funct.equalsIgnoreCase("students")) {
-      for(Student a:grade){
-        System.out.println(a);
+      for(Student s:grade){
+        for(int i=0;i<5;i++){
+          if(s.getChoices()[i].isPop()){
+            s.setSchedule(i,s.getChoices()[i]);
+          }
+          else{
+            s.setSchedule(i,sList.get(18));
+          }
+        }
+        System.out.println(s.schedule());
       }
     }
       }

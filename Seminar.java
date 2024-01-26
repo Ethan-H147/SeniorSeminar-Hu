@@ -2,11 +2,15 @@ public class Seminar {
     String sName;
     int sNum;
     int picked;
-    boolean popularity;
+    boolean popularity=picked>32;
 
     public Seminar(String name, int num){
         sName = name;
         sNum = num;
+    }
+
+    public boolean isPop(){
+        return popularity;
     }
 
     public int getNum(){
