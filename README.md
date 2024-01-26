@@ -5,3 +5,7 @@ First I will count the seminars and divide them into popular and unpopular, and 
 2023/1/18 Encountered some issue with visual studio code today, spent most of the class trying to setup visual studio code on a Mac.
 
 2023/1/22 Finished the basic structure of Student and Seminar class, successfully loaded every student and their choices, working on tallying the number picks of each seminar to determine the popularity.
+
+2023/1/24 Finished loading the choices but encountered a glitch that won't correctly print student's choices as an arraylist.
+
+2023/1/26 Fixed the glitch and loaded all the unpopular seminars into students' schedules.
