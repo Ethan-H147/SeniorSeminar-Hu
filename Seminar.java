@@ -2,7 +2,7 @@ public class Seminar {
     String sName;
     int sNum;
     int picked;
-    boolean popularity=picked>32;
+    //boolean popularity=picked>32;
 
     public Seminar(String name, int num){
         sName = name;
@@ -10,7 +10,7 @@ public class Seminar {
     }
 
     public boolean isPop(){
-        return popularity;
+        return picked>32;
     }
 
     public int getNum(){
