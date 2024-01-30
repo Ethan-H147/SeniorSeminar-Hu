@@ -1,14 +1,14 @@
 public class Student {
 	private String nameString;
 	private Seminar[] choices;
-    private Seminar[] attends;
+    private Seminar[] attends=new Seminar[5];
 
 
     public Student(String name, Seminar[] choice){
         nameString = name;
         choices = choice;
         for(int i=0;i<5;i++){
-            attends[i]=choice[i];
+            attends[i]=null;
         }
     }
     
