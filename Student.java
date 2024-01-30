@@ -2,7 +2,8 @@ public class Student {
 	private String nameString;
 	private Seminar[] choices;
     private Seminar[] attends=new Seminar[5];
-
+    private int ns=0;
+    
 
     public Student(String name, Seminar[] choice){
         nameString = name;
@@ -12,12 +13,26 @@ public class Student {
         }
     }
     
+    public int ns(){
+        for(int i=0;i<5;i++){
+            if(attends[i].getNum()==19){
+                ns++;
+            }
+        }
+        return ns;
+    }
+
     public Seminar[] getChoices(){
         return choices;
     }
 
+    public Seminar[] getAttends(){
+        return attends;
+    }
+
     public void setSchedule(int i, Seminar a){
         attends[i]=a;
+        a.attend();
     }
 
     public String toString() {
