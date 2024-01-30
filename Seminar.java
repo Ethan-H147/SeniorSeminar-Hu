@@ -2,6 +2,7 @@ public class Seminar {
     String sName;
     int sNum;
     int picked;
+    int attended;
     //boolean popularity=picked>32;
 
     public Seminar(String name, int num){
@@ -19,6 +20,10 @@ public class Seminar {
 
     public void pick(){
         picked++;
+    }
+
+    public void attend(){
+        attended++;
     }
 
     public String toString() {
