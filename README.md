@@ -9,3 +9,5 @@ First I will count the seminars and divide them into popular and unpopular, and 
 2023/1/24 Finished loading the choices but encountered a glitch that won't correctly print student's choices as an arraylist.
 
 2023/1/26 Fixed the glitch and loaded all the unpopular seminars into students' schedules.
+
+2023/1/30 Successfully placed the popular seminars into students' schedule, left 2 of their attends blank for later balance. Encountered a glitch that only works for the first conditiona; statement.
