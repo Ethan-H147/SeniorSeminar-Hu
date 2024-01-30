@@ -59,17 +59,17 @@ public class Main {
         System.out.println("An error occurred.");
         e.printStackTrace();
       }
-
+      System.out.println("Function");
       //System.out.print(grade);
       Scanner scan = new Scanner(System.in);
       String funct;
       do{
       funct= scan.nextLine();
-    System.out.println("Function");
+    
     if(funct.equalsIgnoreCase("students")) {
       for(Student s:grade){
         for(int i=0;i<5;i++){
-          if(s.getChoices()[i].isPop()){
+          if(!s.getChoices()[i].isPop()){
             s.setSchedule(i,s.getChoices()[i]);
           }
           else{
