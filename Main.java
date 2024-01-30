@@ -52,7 +52,7 @@ public class Main {
           }
           Student a = new Student(name, choice);
           grade.add(a);
-          System.out.println(a);
+          //System.out.println(a);
         }
         myReader.close();
       } catch (FileNotFoundException e) {
@@ -61,12 +61,7 @@ public class Main {
       }
       System.out.println("Function");
       //System.out.print(grade);
-      Scanner scan = new Scanner(System.in);
-      String funct;
-      do{
-      funct= scan.nextLine();
-    
-    if(funct.equalsIgnoreCase("students")) {
+
       for(Student s:grade){
         for(int i=0;i<5;i++){
           if(!s.getChoices()[i].isPop()){
@@ -76,11 +71,69 @@ public class Main {
             s.setSchedule(i,sList.get(18));
           }
         }
+      }
+       int tempIndex=0;
+      int r=0;
+
+      for(Student s:grade){
+        if(s.ns()==3){
+          r=1;
+          for(int i=0;i<5;i++){
+            if(s.getChoices()[i].isPop()){
+              for(int j=0;j<5;j++){
+                if(s.getAttends()[j].getNum()==19){
+                  tempIndex=j;
+                  break;
+                }
+              }
+              s.setSchedule(tempIndex, s.getChoices()[i]);
+              r--;
+              if(r==0){
+                break;
+              }
+            }
+          }
+        }
+      }
+      for(Student s:grade){
+        if(s.ns()==4){
+          r=2;
+          for(int i=0;i<5;i++){
+            if(s.getChoices()[i].isPop()){
+              for(int j=0;j<5;j++){
+                if(s.getAttends()[j].getNum()==19){
+                  tempIndex=j;
+                  break;
+                }
+              }
+              s.setSchedule(tempIndex, s.getChoices()[i]);
+              r--;
+              if(r==0){
+                break;
+              }
+            }
+          }
+        }
+      }
+      
+
+
+      Scanner scan = new Scanner(System.in);
+      String funct;
+  do{
+      funct= scan.nextLine();
+    
+    if(funct.equalsIgnoreCase("students")) {
+      for(Student s:grade){
         System.out.println(s.schedule());
       }
     }
-      }
+    if(funct.equalsIgnoreCase("seminar")) {
+      System.out.println(sList);
+    }
+  }
       while(!funct.equalsIgnoreCase("skip"));
     }
   
+
 }
