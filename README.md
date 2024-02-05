@@ -11,3 +11,7 @@ First I will count the seminars and divide them into popular and unpopular, and 
 2023/1/26 Fixed the glitch and loaded all the unpopular seminars into students' schedules.
 
 2023/1/30 Successfully placed the popular seminars into students' schedule, left 2 of their attends blank for later balance. Encountered a glitch that only works for the first conditiona; statement.
+
+2023/2/3 Added the counter for number of students in a seminar, to make sure it won't exceeds 32. Added second wave of seminar assigning, left some placeholders for later balance. 
+
+2023/2/4 Finished assigning randomized seminars for students that can't get to attend all of their choices, comments added.
