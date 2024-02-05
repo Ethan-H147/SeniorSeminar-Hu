@@ -3,6 +3,10 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Main {
+
+
+  
+
     public static void main (String[] args){  
     String[] myArray;
     ArrayList<Student> grade = new ArrayList<Student>();
@@ -17,11 +21,12 @@ public class Main {
           String data = myReader.nextLine();
           //System.out.println(data);
           myArray = data.split(",");
+          //8th in the list
           name = myArray[8];
           int num = Integer.parseInt(myArray[9]);
+          //scan the list of seminars
           Seminar a = new Seminar(name, num);
           sList.add(a);
-          //System.out.println(a);
           totalSeminar--;
           if(totalSeminar<1){
             break;
@@ -32,7 +37,6 @@ public class Main {
         System.out.println("An error occurred.");
         e.printStackTrace();
       }
-      //System.out.print(sList);
       try {
         File myObj = new File("SrSeminar_RawData.csv");
         Scanner myReader = new Scanner(myObj);
@@ -59,7 +63,7 @@ public class Main {
         System.out.println("An error occurred.");
         e.printStackTrace();
       }
-      System.out.println("Function");
+      
       //System.out.print(grade);
 
       for(Student s:grade){
@@ -72,31 +76,12 @@ public class Main {
           }
         }
       }
-       int tempIndex=0;
+      int tempIndex=0;
       int r=0;
+      int t=0;
 
       for(Student s:grade){
         if(s.ns()==3){
-          r=1;
-          for(int i=0;i<5;i++){
-            if(s.getChoices()[i].isPop()){
-              for(int j=0;j<5;j++){
-                if(s.getAttends()[j].getNum()==19){
-                  tempIndex=j;
-                  break;
-                }
-              }
-              s.setSchedule(tempIndex, s.getChoices()[i]);
-              r--;
-              if(r==0){
-                break;
-              }
-            }
-          }
-        }
-      }
-      for(Student s:grade){
-        if(s.ns()==4){
           r=2;
           for(int i=0;i<5;i++){
             if(s.getChoices()[i].isPop()){
@@ -106,7 +91,10 @@ public class Main {
                   break;
                 }
               }
+              if(!s.getChoices()[i].isFull()){
               s.setSchedule(tempIndex, s.getChoices()[i]);
+              sList.get(18).quit();
+              }
               r--;
               if(r==0){
                 break;
@@ -114,10 +102,55 @@ public class Main {
             }
           }
         }
+        else{
+          t=3;
+          for(int i=0;i<5;i++){
+            if(s.getChoices()[i].isPop()){
+              for(int j=0;j<5;j++){
+                if(s.getAttends()[j].getNum()==19){
+                  tempIndex=j;
+                  break;
+                }
+              }
+              if(!s.getChoices()[i].isFull()){
+              s.setSchedule(tempIndex, s.getChoices()[i]);
+              sList.get(18).quit();
+              }
+              t--;
+              if(t==0){
+                break;
+              }
+            }
+          }
+        }
       }
-      
 
+      Seminar rand=sList.get(18);
+      for(Student s:grade){
+          for(int i=0;i<5;i++){
+            if(s.getChoices()[i].isPop()){
+              for(int j=0;j<5;j++){
+                if(s.getAttends()[j].getNum()==19){
+                  tempIndex=j;
+                  break;
+                }
+              }
+              if(!s.getChoices()[i].isFull()){
+              s.setSchedule(tempIndex, s.getChoices()[i]);
+              }
+              else{
+                do{
+                  rand=sList.get((int)(Math.random()*18));
+                }
+                while(rand.isFull()||seminarExist(s.getChoices(), rand));
+                s.setSchedule(tempIndex, rand);
+                sList.get(18).quit();
+              }
+            }
+          }
+        }
 
+      System.out.println("Function(students/seminars/student search/seminar search)");
       Scanner scan = new Scanner(System.in);
       String funct;
   do{
@@ -128,12 +161,60 @@ public class Main {
         System.out.println(s.schedule());
       }
     }
-    if(funct.equalsIgnoreCase("seminar")) {
-      System.out.println(sList);
+    if(funct.equalsIgnoreCase("seminars")) {
+      for(Seminar s:sList){
+        System.out.println(s);
+      }
+    }
+    if(funct.equalsIgnoreCase("student search")){
+      System.out.print("Enter full name: ");
+            String searchName = scan.nextLine();
+            if(searchStudent(grade, searchName)==-1){//doesn't exist
+              System.out.print("Student doesn't exist.\n");
+            }
+            else{
+              System.out.print(grade.get(searchStudent(grade, searchName)-1));
+            }
+    }
+
+    if(funct.equalsIgnoreCase("seminar search")) {
+      System.out.print("Enter seminar number: ");
+            int searchSeminar = scan.nextInt()-1;
+            System.out.println(sList.get(searchSeminar));
+            Seminar temp = sList.get(searchSeminar);
+            if(temp.getAttended()>16){
+              System.out.print("2 Sessions\n");
+            }
+            else{System.out.print("1 Session\n");}
+            for(Student s:grade){
+              for(int i=0;i<5;i++){
+                if(s.getAttends()[i]==temp){
+                  System.out.println(s.getName());
+                }
+              }
+            }
+    }
+
+}while(!funct.equalsIgnoreCase("skip"));
+    
+
+}
+
+public static int searchStudent(ArrayList<Student> sList, String name){
+  for(int i=0; i<sList.size();i++){
+    if (sList.get(i).getName().equalsIgnoreCase(name)){//check both last and first name
+    return i+1;
     }
   }
-      while(!funct.equalsIgnoreCase("skip"));
+return -1;
+}
+public static boolean seminarExist(Seminar[] sList, Seminar a){
+  for(int i=0; i<sList.length;i++){
+    if (sList[i]==a){//check both last and first name
+    return true;
     }
-  
+  }
+return false;
+}
 
 }
