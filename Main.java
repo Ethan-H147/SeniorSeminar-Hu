@@ -94,7 +94,7 @@ public class Main {
                   break;
                 }
               }
-              if(!s.getChoices()[i].isFull()){//make sure it doesn't exceed 32 students
+              if(!s.getChoices()[i].isFull()&&!seminarExist(s.getAttends(), s.getChoices()[i])){//make sure it doesn't exceed 32 students
               s.setSchedule(tempIndex, s.getChoices()[i]);
               sList.get(18).quit();//remove the student from the placeholder
               }
@@ -115,7 +115,7 @@ public class Main {
                   break;
                 }
               }
-              if(!s.getChoices()[i].isFull()){
+              if(!s.getChoices()[i].isFull()&&!seminarExist(s.getAttends(), s.getChoices()[i])){
               s.setSchedule(tempIndex, s.getChoices()[i]);
               sList.get(18).quit();
               }
@@ -138,7 +138,7 @@ public class Main {
                   break;
                 }
               }
-              if(!s.getChoices()[i].isFull()){
+              if(!s.getChoices()[i].isFull()&&!seminarExist(s.getAttends(), s.getChoices()[i])){
               s.setSchedule(tempIndex, s.getChoices()[i]);//make sure their choices are still considered, if it still fits then put that in
               }
               else{
