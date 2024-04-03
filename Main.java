@@ -85,7 +85,7 @@ public class Main {
 
       for(Student s:grade){
         if(s.ns()==3){//students with 3 empty blocks
-          r=2;
+          r=2;//only assign 2 seminars to reserve for later students
           for(int i=0;i<5;i++){
             if(s.getChoices()[i].isPop()){//only deal with popular ones 
               for(int j=0;j<5;j++){
@@ -94,11 +94,11 @@ public class Main {
                   break;
                 }
               }
-              if(!s.getChoices()[i].isFull()&&!seminarExist(s.getAttends(), s.getChoices()[i])){//make sure it doesn't exceed 32 students
+              if(!s.getChoices()[i].isFull()&&!seminarExist(s.getAttends(), s.getChoices()[i])){//make sure it doesn't exceed 32 students and doesnt repeat
               s.setSchedule(tempIndex, s.getChoices()[i]);
               sList.get(18).quit();//remove the student from the placeholder
               }
-              r--;
+              r--;//countdown
               if(r==0){
                 break;//stop filling, leave some empty ones for later in order to balance, otherwise students on the top will get fulfilled but not the ones on the bottom
               }
@@ -111,12 +111,12 @@ public class Main {
             if(s.getChoices()[i].isPop()){
               for(int j=0;j<5;j++){
                 if(s.getAttends()[j].getNum()==19){
-                  tempIndex=j;
+                  tempIndex=j;//index of the placeholder
                   break;
                 }
               }
               if(!s.getChoices()[i].isFull()&&!seminarExist(s.getAttends(), s.getChoices()[i])){
-              s.setSchedule(tempIndex, s.getChoices()[i]);
+              s.setSchedule(tempIndex, s.getChoices()[i]);//2nd round setting seminar 
               sList.get(18).quit();
               }
               t--;
@@ -131,7 +131,7 @@ public class Main {
       Seminar rand=sList.get(18);//initialize a seminar for random assignment
       for(Student s:grade){
           for(int i=0;i<5;i++){
-            if(s.getChoices()[i].isPop()){
+            if(s.getChoices()[i].isPop()){//only for popular ones
               for(int j=0;j<5;j++){
                 if(s.getAttends()[j].getNum()==19){
                   tempIndex=j;//the index of the first placeholder
@@ -157,9 +157,9 @@ public class Main {
           for(int i=0;i<5;i++){
             if(s.getAttends()[i]==sList.get(18)){//if there are still placeholders left, assign seminars
                 do{
-                  rand=sList.get((int)(Math.random()*18));
+                  rand=sList.get((int)(Math.random()*18));//randomly select
                 }
-                while(rand.isFull()||seminarExist(s.getAttends(), rand));
+                while(rand.isFull()||seminarExist(s.getAttends(), rand));//make sure not full and repeat
                 s.setSchedule(i, rand);
                 sList.get(18).quit();
               
@@ -202,7 +202,7 @@ public class Main {
             int searchSeminar = scan.nextInt()-1;
             System.out.println(sList.get(searchSeminar));
             Seminar temp = sList.get(searchSeminar);
-            if(temp.getAttended()>16){
+            if(temp.getAttended()>16){//if it's popular then it's a 2 session otherwise it's a one
               System.out.print("2 Sessions\n");
             }
             else{System.out.print("1 Session\n");}
